@@ -26,7 +26,7 @@ name: learning-workflows
 # ${{ github.event.repository.name }}
 # 
 # To use environment variables we do
-# ${env variable name}
+# $env_variable_name
 # 
 # So we can set something like
 env:
@@ -56,4 +56,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Does_this_repo_have_a_name
-        run: echo '${REPOSITORY}'
+        run: echo ${REPOSITORY}
