@@ -44,7 +44,7 @@ jobs:
               line="${BASH_REMATCH[2]}"
               gravity="${BASH_REMATCH[3]}"
               error_code="${BASH_REMATCH[4]}"
-              echo "::error file=${file},title="$gravity coding style error: $file#L$line",line=${line}::C-$error_code"
+              echo "::error title="$gravity coding style error: ${file}#L${line#}"::C-$error_code"
             fi
           done < "$style_report"
         shell: bash
