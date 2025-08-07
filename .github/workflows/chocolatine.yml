@@ -23,14 +23,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Coding style checker step
-        run: |
-          echo $(pwd)
-          ls -l
-          check.sh $(pwd) $(pwd)
+        run: check.sh $(pwd) $(pwd)
         shell: bash
       - name: Check if there is style errors or not
         run: |
-          ls -l
           if [ -s "coding-style-reports.log" ]; then
             echo "STYLE_ERRORS=true" >> $GITHUB_ENV
           else
