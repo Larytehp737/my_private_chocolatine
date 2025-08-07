@@ -30,6 +30,7 @@ jobs:
         shell: bash
       - name: Check if there is style errors or not
         run: |
+          ls -l
           if [ -s "coding-style-reports.log" ]; then
             echo "STYLE_ERRORS=true" >> $GITHUB_ENV
           else
