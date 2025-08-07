@@ -1,10 +1,10 @@
 # workflows contains Events, jobs, runners, steps and actions
 
 # name to name your workflow
-name : learning-workflows
+name: learning-workflows
 
 # an event is a trigger for a workflow
-#   we can notice push. pull_request or 
+#   we can notice push. pull_request or
 #   workflow_dispatch[this will create a button on which you can click]
 #   [to run the current workflow without push]
 # a runner is the specific environment in which a job will be runned
@@ -18,8 +18,16 @@ name : learning-workflows
 #       . this is what the job uses as a repository or something like that
 #         it is like
 #         user/repository_name@(version or branches or tag or even commit_hashes)
-# 
-# 
+#
+#
+# To use variable the syntax is ${{ envfile.VARIABLE_NAME }}
+#
+# To retrieve the repository name we can use the specific variable
+# ${{ github.event.repository.name }}
+# So we can set something like
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPOSITORY: ${{ github.event.repository.name }}
 
 on:
   push:
@@ -37,3 +45,11 @@ jobs:
         run: echo "Done!"
         # we can specify which shell we would like to use
         shell: bash
+        # we can set specific environments for the running time of this job
+        # env: "BLA BLA BLA"
+
+  display_repo_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Does_this_repo_have_a_name
+        run: echo '${{ REPOSITORY }}'
