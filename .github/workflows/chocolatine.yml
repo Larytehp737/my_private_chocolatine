@@ -2,8 +2,8 @@ name: chocolatine
 
 on:
   push:
-    branches:
-      - '!ga-ignore-*'
+    branches-ignore:
+      - 'ga-ignore-*'
 
 env:
   REPOSITORY: ${{ github.event.repository.name }}
