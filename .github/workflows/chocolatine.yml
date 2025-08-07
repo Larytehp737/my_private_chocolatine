@@ -21,7 +21,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: ghcr.io/epitech/coding-style-checker:latest
+      - name: Run docker image
+        run: docker run ghcr.io/epitech/coding-style-checker:latest
       - name: Coding style checker step
         run: check.sh $(pwd) $(pwd)
         shell: bash
