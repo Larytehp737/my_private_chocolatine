@@ -24,6 +24,10 @@ name: learning-workflows
 #
 # To retrieve the repository name we can use the specific variable
 # ${{ github.event.repository.name }}
+# 
+# To use environment variables we do
+# ${env variable name}
+# 
 # So we can set something like
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,4 +56,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Does_this_repo_have_a_name
-        run: echo '${{ REPOSITORY }}'
+        run: echo '${REPOSITORY}'
