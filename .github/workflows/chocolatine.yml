@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - 'ga-ignore-*'
+  pull_request:
+    branches-ignore:
+      - 'ga-ignore-*'
 
 env:
   REPOSITORY: ${{ github.event.repository.name }}
@@ -20,17 +23,21 @@ jobs:
           fetch-depth: 0
       - name: Coding style checker step
         run: check.sh $(pwd) $(pwd)
+        shell: bash
       - name: Check if there is style errors or not
         run: |
           if [ -s "coding-style-reports.log" ]; then
             echo "STYLE_ERRORS=true" >> $GITHUB_ENV
           else
             echo "STYLE_ERRORS=false" >> $GITHUB_ENV
+        shell: bash
       - name: Display style errors as annotation if they exists
         if: env.STYLE_ERRORS == 'true'
         run: cat coding-style-reports.log
+        shell: bash
       - name: Set the job status
         if: env.STYLE_ERRORS == 'true'
         run: exit 1
+        shell: bash
     
       
