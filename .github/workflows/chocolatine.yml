@@ -35,6 +35,7 @@ jobs:
             echo "STYLE_ERRORS=true" >> $GITHUB_ENV
           else
             echo "STYLE_ERRORS=false" >> $GITHUB_ENV
+          fi
         shell: bash
       - name: Display style errors as annotation if they exists
         if: env.STYLE_ERRORS == 'true'
