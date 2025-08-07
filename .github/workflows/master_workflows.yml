@@ -26,12 +26,9 @@ name: learning-workflows
 # ${{ github.event.repository.name }}
 # 
 # To use environment variables we do
-# $env_variable_name
+# ${env_variable_name}
 # 
 # So we can set something like
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  REPOSITORY: ${{ github.event.repository.name }}
 
 on:
   push:
@@ -57,3 +54,7 @@ jobs:
     steps:
       - name: Does_this_repo_have_a_name
         run: echo ${REPOSITORY}
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPOSITORY: ${{ github.event.repository.name }}
