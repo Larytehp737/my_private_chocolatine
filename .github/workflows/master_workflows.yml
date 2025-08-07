@@ -1,0 +1,39 @@
+# workflows contains Events, jobs, runners, steps and actions
+
+# name to name your workflow
+name : learning-workflows
+
+# an event is a trigger for a workflow
+#   we can notice push. pull_request or 
+#   workflow_dispatch[this will create a button on which you can click]
+#   [to run the current workflow without push]
+# a runner is the specific environment in which a job will be runned
+#   you have to specify there a container but the defaukt to choose is ubuntu-latest
+# a job is like a task (ex: coding-style checker)
+#   a job is caracterized by:
+#     - a name
+#     - a runner
+#     - steps
+#       . there can be uses in job
+#       . this is what the job uses as a repository or something like that
+#         it is like
+#         user/repository_name@(version or branches or tag or even commit_hashes)
+# 
+# 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test_it:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing
+        run: echo "Done!"
+        # we can specify which shell we would like to use
+        shell: bash
