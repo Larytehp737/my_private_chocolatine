@@ -24,7 +24,7 @@ jobs:
       - name: Coding style checker step
         run: |
           docker run ghcr.io/epitech/coding-style-checker:latest
-          check.sh $(pwd) $(pwd)
+          ./check.sh $(pwd) $(pwd)
         shell: bash
       - name: Check if there is style errors or not
         run: |
