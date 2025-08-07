@@ -49,7 +49,7 @@ jobs:
               echo "gravity: $gravity"
               echo "error_code: $error_code"
             fi
-          done < $style_report
+          done < "$style_report"
         shell: bash
       - name: Set the job status
         if: env.STYLE_ERRORS == 'true'
