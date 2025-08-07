@@ -16,11 +16,12 @@ env:
 jobs:
   check_coding_style:
     name: Check the coding style
-    runs-on: ghcr.io/epitech/coding-style-checker:latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - uses: ghcr.io/epitech/coding-style-checker:latest
       - name: Coding style checker step
         run: check.sh $(pwd) $(pwd)
         shell: bash
