@@ -40,10 +40,10 @@ jobs:
           style_report="coding-style-reports.log"
           while IFS= read -r each_error; do
             if [[ "$each_error" =~ ^\./([a-zA-Z0-9._-]+):([0-9]+):[[:space:]][a-zA-Z]+:C-([A-Z0-9]+)$ ]]; then
-              file = "${BASH_REMATCH[1]}"
-              line = "${BASH_REMATCH[2]}"
-              gravity = "${BASH_REMATCH[3]}"
-              error_code = "${BASH_REMATCH[4]}"
+              file="${BASH_REMATCH[1]}"
+              line="${BASH_REMATCH[2]}"
+              gravity="${BASH_REMATCH[3]}"
+              error_code="${BASH_REMATCH[4]}"
               echo "file: $file"
               echo "line: $line"
               echo "gravity: $gravity"
