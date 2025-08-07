@@ -1,0 +1,36 @@
+name: chocolatine
+
+on:
+  push:
+    branches:
+      - '!ga-ignore-*'
+
+env:
+  REPOSITORY: ${{ github.event.repository.name }}
+  # MIRROR_URL: ${MIRROR_URL}
+  # EXECUTABLES: ${EXECUTABLES}
+
+jobs:
+  check_coding_style:
+    name: Check the coding style
+    runs-on: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Coding style checker step
+        run: check.sh $(pwd) $(pwd)
+      - name: Check if there is style errors or not
+        run: |
+          if [ -s "coding-style-reports.log" ]; then
+            echo "STYLE_ERRORS=true" >> $GITHUB_ENV
+          else
+            echo "STYLE_ERRORS=false" >> $GITHUB_ENV
+      - name: Display style errors as annotation if they exists
+        if: env.STYLE_ERRORS == 'true'
+        run: cat coding-style-reports.log
+      - name: Set the job status
+        if: env.STYLE_ERRORS == 'true'
+        run: exit 1
+    
+      
