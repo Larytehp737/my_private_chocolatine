@@ -17,16 +17,16 @@ jobs:
   check_coding_style:
     name: Check the coding style
     runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Coding style checker step
         run: |
-          docker run ghcr.io/epitech/coding-style-checker:latest
-          echo $(PWD)
+          echo $(pwd)
           ls -l
-          ./check.sh $(pwd) $(pwd)
+          check.sh $(pwd) $(pwd)
         shell: bash
       - name: Check if there is style errors or not
         run: |
