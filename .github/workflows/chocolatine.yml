@@ -35,7 +35,21 @@ jobs:
         shell: bash
       - name: Display style errors as annotation if they exists
         if: env.STYLE_ERRORS == 'true'
-        run: cat coding-style-reports.log
+        run: |
+          cat coding-style-reports.log
+          style_report = "coding-style-reports.log"
+          while IFS= read -r each_error; do
+            if [[ "$each_error" =~ ^\./([a-zA-Z0-9._-]+):([0-9]+):[[:space:]][a-zA-Z]+:C-([A-Z0-9]+)$ ]]; then
+              file = "${BASH_REMATCH[1]}"
+              line = "${BASH_REMATCH[2]}"
+              gravity = "${BASH_REMATCH[3]}"
+              error_code = "${BASH_REMATCH[4]}"
+              echo "file: $file"
+              echo "line: $line"
+              echo "gravity: $gravity"
+              echo "error_code: $error_code"
+            fi
+          done < $style_report
         shell: bash
       - name: Set the job status
         if: env.STYLE_ERRORS == 'true'
