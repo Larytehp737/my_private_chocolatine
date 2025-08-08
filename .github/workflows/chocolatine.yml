@@ -72,6 +72,12 @@ jobs:
           IFS=',' read -ra execs <<< "$EXECUTABLES"
           echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
           for each_exec in "${execs[@]}"; do
+            exec_extension="${each_exec##*.}"
+            if [ $exec_extension == "a" ] && ! [ -f "$each_exec" ]; then
+              echo "::error title=Missing executable:: "$each_exec""
+              echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
+              continue
+            fi
             if ! [[ -f "$each_exec" && -x "$each_exec" ]]; then
               echo "::error title=Missing executable:: "$each_exec""
               echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
