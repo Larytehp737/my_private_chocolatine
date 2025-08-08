@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell1
+** minishell2
 ** File description:
 ** unsetenv
 */

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell1
+** minishell2
 ** File description:
 ** the header file
 */
@@ -9,6 +9,7 @@
     #define MY
 
 // necessary libs
+    #include <linux/limits.h>
     #include <unistd.h>
     #include <string.h>
     #include <signal.h>
@@ -43,6 +44,27 @@ typedef struct indices {
     int t;
 } ind_t;
 
+    #define PIPE "|"
+    #define MULTIPLE ";"
+    #define OUT_SIMPLE_RED ">"
+    #define OUT_DOUBLE_RED ">>"
+    #define IN_SIMPLE_RED "<"
+    #define IN_DOUBLE_RED "<<"
+
+typedef char *cli_operator_t;
+//typedef char *cli_operator_func_t;
+
+typedef struct cli_tools_caracteristics {
+    char *tool;
+    int max_occur;
+    char *err_message;
+    int can_end_line;
+    char *posible_comb[20];
+    // cli_operator_func_t function[];
+} cli_car_t;
+
+extern const cli_car_t tools[];
+
 typedef struct charices {
     char **line;
     char *info;
@@ -50,6 +72,27 @@ typedef struct charices {
     char *envi;
     char *sm;
 } ch_t;
+
+typedef enum cli_operators {
+    INSTRUCTION,
+    OPERATOR
+} cli_op_t;
+
+// op for operator
+typedef struct syntax_tree_for_cli_parsing {
+    cli_op_t type;
+    char *value;
+    struct syntax_tree_for_cli_parsing *left;
+    struct syntax_tree_for_cli_parsing *right;
+} my_ast_t;
+
+typedef struct for_redir {
+    char *input_file;
+    char *output_file;
+    int append_mode;
+    int redir_type;
+    int file;
+} redir_t;
 
 typedef void(*my_built_ins_t)(char *, char ***, unsigned int *);
 
@@ -100,6 +143,7 @@ int is_binary_dir(char *dir_name, int *l_st);
 int is_unnormal_bin(char *file, unsigned int *l_st);
 char *is_in_path(char *command, char *env[]);
 int is_alphanum(char c);
+int count_char_occurences(char *str, char c);
 
 // for prompt
 void display_prompt(char **env, int st);
@@ -107,7 +151,36 @@ char *my_getenv(char **env, char *name);
 char *get_session_manager(char *env[]);
 void status_disp(int st);
 
+// new
+int is_builtin(char *cmd);
+int exec_builtin(char *command, char ***oenv, char **env, unsigned int *l_st);
+int contains_redirection(char *command);
+void parse_cli_arg(char *command, char ***oenv,
+    char **env, unsigned int *l_st);
+void get_redir_info2(char *command, redir_t *redirs);
+void get_redir_info(char *command, redir_t *redirs);
+void simple_in(char *command, char ***oenv, char **env, redir_t *redirs);
+void outs(char *command, char ***oenv, char **env, redir_t *redirs);
+void handle_redirection(char *command, char ***oenv, char **env,
+    unsigned int *l_st);
+int **prepare_pipes(int n);
+void close_pipes_and_free(int **fds, int n);
+void redirect_fds(int **fds, int i, int n);
+void exec_command(char *cmd, char ***oenv, char **env, unsigned int *l_st);
+void handle_pipe(char *command, char ***oenv, char **env, unsigned int *l_st);
+bool is_pipe(char c);
+int my_strstr(char *str1, char *str2);
+int count_char_occurences(char *str, char c);
+int get_last_appear(char *str, char c);
+int get_consecutive_occurence(char *str, char c);
+int op_end_line(char *command, char c);
+void status_disp(int st);
+int is_empty(char *command);
+
 // main functions
+void parse_cli_arg(char *command, char ***oenv,
+    char **env, unsigned int *l_st);
+void shell_native_functions(char **args, char ***env, unsigned int *l_st);
 void command_manager(char *command, char ***oenv,
     char **env, unsigned int *l_st);
 void cli_parser(char *command, char ***oenv,

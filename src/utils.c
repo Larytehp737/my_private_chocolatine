@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell1
+** minishell2
 ** File description:
 ** utils functions for display
 */
@@ -22,8 +22,7 @@ void my_putnbr(int nb)
     if (nb < 0) {
         my_putchar('-');
         my_putnbr(-nb);
-    }
-    if (nb <= 9 && nb >= 0) {
+    } else if (nb <= 9 && nb >= 0) {
         my_putchar(nb + 48);
     } else {
         my_putnbr(nb / 10);
@@ -37,7 +36,7 @@ int my_strlen(char *str)
 
     while (*str) {
         len++;
-        *str++;
+        str++;
     }
     return len;
 }

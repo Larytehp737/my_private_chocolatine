@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell
+** minishell2
 ** File description:
 ** built_in exit
 */

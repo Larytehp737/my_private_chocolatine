@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell1
+** minishell2
 ** File description:
 ** utils for strings manip
 */
@@ -80,4 +80,5 @@ int is_alphanum(char c)
         return 0;
     if (c >= 'A' && c <= 'Z')
         return 0;
+    return 1;
 }

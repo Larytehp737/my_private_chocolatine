@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2025
-** minishell.h
+** minishell2
 ** File description:
 ** built-in setenv
 */
