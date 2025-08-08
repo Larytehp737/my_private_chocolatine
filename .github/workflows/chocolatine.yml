@@ -71,7 +71,7 @@ jobs:
         run: |
           pwd
           IFS=',' read -ra execs <<< "$EXECUTABLES"
-          echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
+          echo "MISSING_EXECUTABLES=false" >> $GITHUB_ENV
           for each_exec in "${execs[@]}"; do
             exec_extension="${each_exec##*.}"
             if [ $exec_extension == "a" ]; then
