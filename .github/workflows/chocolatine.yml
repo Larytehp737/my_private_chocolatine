@@ -94,7 +94,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          featch-depth: 0
+          fetch-depth: 0
       - name: Launch tests
         run: make tests_run
         timeout-minutes: 2
