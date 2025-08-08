@@ -106,7 +106,7 @@ jobs:
 
   push_to_mirror:
     name: Pushing to the mirror repository using secrets
-    if: ${REPOSITORY} != ${MIRROR_URL} && github.event_name == 'push'
+    if: ${{ env.REPOSITORY }} != ${{ env.MIRROR_URL }} && github.event_name == 'push'
     needs: run_tests
     runs-on: ubuntu-latest
     steps:
