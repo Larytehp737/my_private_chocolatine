@@ -86,7 +86,7 @@ jobs:
             fi
           done
         shell: bash
-      - name: Set the job status case of missing executables
+      - name: Set the job status case of missing executables.
         if: ${{ env.MISSING_EXECUTABLES == 'true' }}
         run: exit 1
         shell: bash
