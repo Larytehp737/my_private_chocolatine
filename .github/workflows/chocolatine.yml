@@ -75,6 +75,7 @@ jobs:
             if [ -f "$each_exec" -ne 0]; then
               echo "::error title='Missing executable':: "$each_exec""
               echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
+            fi
           done
         shell: bash
       - name: Set the job status case of missing executables
