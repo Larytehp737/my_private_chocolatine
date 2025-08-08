@@ -69,6 +69,7 @@ jobs:
       #   shell: bash
       - name: Check for executables
         run: |
+          pwd
           IFS=',' read -ra execs <<< "$EXECUTABLES"
           echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
           for each_exec in "${execs[@]}"; do
