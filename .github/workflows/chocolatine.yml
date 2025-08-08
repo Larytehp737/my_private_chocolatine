@@ -11,7 +11,7 @@ on:
 env:
   REPOSITORY: ${{ github.event.repository.name }}
   # MIRROR_URL: ${MIRROR_URL}
-  EXECUTABLES: "mysh"
+  EXECUTABLES: "mysh,libcuddle.a"
 
 jobs:
   check_coding_style:
