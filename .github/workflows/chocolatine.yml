@@ -106,7 +106,7 @@ jobs:
         timeout-minutes: 2
 
   push_to_mirror:
-    name: Pushing to the mirror repository
+    name: Pushing to the mirror repo
     if: github.event.repository.name != 'git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git' && github.event_name == 'push'
     needs: run_tests
     runs-on: ubuntu-latest
