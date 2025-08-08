@@ -5,7 +5,7 @@
 ## The makefile
 ##
 
-NAME	=	mys
+NAME	=	mysh
 
 SRC	=	src/main.c	\
 		src/delim_functions.c	\
