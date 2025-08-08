@@ -10,7 +10,7 @@ on:
 
 env:
   REPOSITORY: ${{ github.event.repository.name }}
-  MIRROR_URL: "git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
+  MIRROR_URL: "ssh://git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
   EXECUTABLES: "mysh"
 
 jobs:
@@ -105,7 +105,7 @@ jobs:
         timeout-minutes: 2
 
   push_to_mirror:
-    name: Pushing to the mirror repository using secrets
+    name: Pushing to the mirror repository
     if: github.event.repository.name != 'git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git'
     needs: run_tests
     runs-on: ubuntu-latest
