@@ -105,7 +105,7 @@ jobs:
         timeout-minutes: 2
 
   push_to_mirror:
-    name: Pushing to the mirror repository using github.secrets
+    name: Pushing to the mirror repository using secrets
     if: github.event.repository.name != 'git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git'
     needs: run_tests
     runs-on: ubuntu-latest
