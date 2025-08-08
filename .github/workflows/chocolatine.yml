@@ -86,5 +86,17 @@ jobs:
         if: env.MISSING_EXECUTABLES == 'true'
         run: exit 1
         shell: bash
-      
+  
+  run_tests:
+    name: Running tests
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          featch-depth: 0
+      - name: Launch tests
+        run: make tests_run
+        timeout-minutes: 2
+    
       
