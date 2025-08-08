@@ -33,7 +33,8 @@ jobs:
             echo "STYLE_ERRORS=false" >> $GITHUB_ENV
           fi
         shell: bash
-      - if: env.STYLE_ERRORS == 'true'
+      - name: Coding_style_checker
+        if: env.STYLE_ERRORS == 'true'
         run: |
           style_report="coding-style-reports.log"
           while IFS= read -r each_error; do
