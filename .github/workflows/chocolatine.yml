@@ -33,8 +33,8 @@ jobs:
             echo "STYLE_ERRORS=false" >> $GITHUB_ENV
           fi
         shell: bash
-      - name: Display style errors as annotation if they exists
-        if: env.STYLE_ERRORS == 'true'
+      #- name: Display style errors as annotation if they exists
+      - if: env.STYLE_ERRORS == 'true'
         run: |
           cat coding-style-reports.log
           style_report="coding-style-reports.log"
