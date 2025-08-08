@@ -11,7 +11,7 @@ on:
 env:
   REPOSITORY: ${{ github.event.repository.name }}
   # MIRROR_URL: "https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
-  MIRROR_URL: "https://x-access-token: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@github.com/EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
+  MIRROR_URL: "https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
   EXECUTABLES: "mysh"
 
 jobs:
