@@ -54,6 +54,7 @@ jobs:
 
   check_program_compilation:
     name: Check if the program compile correctly
+    needs: check_coding_style
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
     steps:
@@ -89,6 +90,7 @@ jobs:
   
   run_tests:
     name: Running tests
+    needs: check_program_compilation
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
     steps:
