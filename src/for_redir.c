@@ -41,14 +41,6 @@ void get_redir_info(char *command, redir_t *redirs)
         redirs->redir_type = 0;
         return;
     }
-    redir_pos = my_strstr(command, "@>");
-    if (redir_pos != -1) {
-        redirs->append_mode = 0;
-        redirs->output_file = strtok(command + redir_pos + 2, " \t\n");
-        command[redir_pos] = '\0';
-        redirs->redir_type = 5;
-        return;
-    }
     redir_pos = my_strstr(command, ">");
     if (redir_pos != -1) {
         redirs->append_mode = 0;
@@ -92,7 +84,7 @@ void outs(char *command, char ***oenv, char **env, redir_t *redirs)
     }
     pid = fork();
     if (pid == 0) {
-        dup2(redirs->file, (redirs->redir_type == 5) ? STDERR_FILENO : STDOUT_FILENO);
+        dup2(redirs->file, STDOUT_FILENO);
         exec_command(command, oenv, env, &l_st);
         exit(0);
     }
@@ -111,7 +103,7 @@ void handle_redirection(char *command, char ***oenv, char **env,
         simple_in(command, oenv, env, &redirs);
         return;
     }
-    if (redirs.redir_type == 1 || redirs.redir_type == 0 || redirs.redir_type == 5) {
+    if (redirs.redir_type == 1 || redirs.redir_type == 0) {
         outs(command, oenv, env, &redirs);
         return;
     }
