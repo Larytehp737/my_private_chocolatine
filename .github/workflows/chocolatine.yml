@@ -16,7 +16,7 @@ env:
 jobs:
   check_coding_style:
     name: Check the coding style
-    if: ${REPOSITORY} != ${MIRROR_URL}
+    if: ${{ env.REPOSITORY }} != ${{ env.MIRROR_URL }}
     runs-on: ubuntu-latest
     container: ghcr.io/epitech/coding-style-checker:latest
     steps:
@@ -55,7 +55,7 @@ jobs:
 
   check_program_compilation:
     name: Check if the program compile correctly
-    if: ${REPOSITORY} != ${MIRROR_URL}
+    if: ${{ env.REPOSITORY }} != ${{ env.MIRROR_URL }}
     needs: check_coding_style
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
@@ -92,7 +92,7 @@ jobs:
 
   run_tests:
     name: Running tests
-    if: ${REPOSITORY} != ${MIRROR_URL}
+    if: ${{ env.REPOSITORY }} != ${{ env.MIRROR_URL }}
     needs: check_program_compilation
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
