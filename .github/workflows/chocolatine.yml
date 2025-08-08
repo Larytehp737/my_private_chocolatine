@@ -73,5 +73,6 @@ jobs:
           for each_exec in "${execs[@]}"; do
             echo "$each_exec"
           done
+        shell: bash
       
       
