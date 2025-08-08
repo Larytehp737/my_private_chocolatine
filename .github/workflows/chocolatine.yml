@@ -10,7 +10,7 @@ on:
 
 env:
   REPOSITORY: ${{ github.event.repository.name }}
-  MIRROR_URL: "ssh://git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
+  MIRROR_URL: "git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-2-chocolatine-aryl.gbeyetin.git"
   EXECUTABLES: "mysh"
 
 jobs:
