@@ -70,9 +70,16 @@ jobs:
       - name: Check for executables
         run: |
           IFS=',' read -ra execs <<< "$EXECUTABLES"
+          echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
           for each_exec in "${execs[@]}"; do
-            echo "$each_exec"
+            if [ -f "$each_exec" -ne 0]; then
+              echo "::error title='Missing executable':: "$each_exec""
+              echo "MISSING_EXECUTABLES=true" >> $GITHUB_ENV
           done
+        shell: bash
+      - name: Set the job status case of missing executables
+        if: env.MISSING_EXECUTABLES == 'true'
+        run: exit 1
         shell: bash
       
       
